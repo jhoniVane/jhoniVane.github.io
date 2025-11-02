@@ -1,0 +1,411 @@
+/* Definición de la Animación de Balanceo (para las tareas en modo Spiderman) */
+@keyframes webSwing {
+    0% { transform: rotate(0.5deg); }
+    50% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0.5deg); }
+}
+
+/* Modo claro (por defecto) */
+:root {
+    --primary: #22223b;
+    --secondary: #4a4e69;
+    --accent: #9a8c98;
+    --bg: #f2e9e4;
+    --white: #fff;
+    --success: #4caf50;
+    --danger: #e63946;
+
+    /* --- Nuevas Variables para Modo Spiderman --- */
+    --spiderman-red: #cc0000;
+    --spiderman-blue: #003399;
+    --spiderman-bg: #1a1a1a;
+    --spiderman-web: #cccccc;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    --primary: #f2e9e4;
+    --secondary: #9a8c98;
+    --accent: #4a4e69;
+    --bg: #22223b;
+    --white: #232136;
+    --success: #43ffaf;
+    --danger: #ff5370;
+}
+
+body.dark-mode .container {
+    border: 1.5px solid #fff;
+}
+
+/* Modo neón */
+body.neon-mode {
+    --primary: #39ff14;
+    --secondary: #00fff7;
+    --accent: #ff00ea;
+    --bg: #181818;
+    --white: #181818;
+    --success: #39ff14;
+    --danger: #ff073a;
+}
+
+body.neon-mode,
+body.neon-mode .container {
+    text-shadow: 0 0 2px #fff, 0 0 10px var(--primary), 0 0 5px var(--accent);
+}
+
+body.neon-mode .container {
+    box-shadow: 0 0 20px 2px var(--accent), 0 0 40px 4px var(--secondary);
+    border: 1px solid var(--accent);
+}
+
+body.neon-mode .todo-item {
+    background: rgba(24,24,24,0.8);
+    border: 1px solid var(--secondary);
+}
+
+body.neon-mode .todo-text {
+    color: var(--primary);
+}
+
+body.neon-mode .action-btn {
+    color: var(--accent);
+}
+
+body.neon-mode .action-btn:hover {
+    background: var(--secondary);
+    color: var(--bg);
+}
+
+body.spiderman-mode {
+    --primary: var(--spiderman-red);
+    --secondary: var(--spiderman-blue);
+    --accent: var(--spiderman-web);
+    --bg: var(--spiderman-bg);
+    --white: #282828;
+    --success: #00ff80;
+    --danger: var(--spiderman-red);
+
+    /* --- IMAGEN DE FONDO DE SPIDERMAN --- */
+    background-image: url('../../img/spiderman-city.jpg');/* ! Asegúrate de que esta ruta sea correcta ! */
+    background-size: cover; /* Cubre todo el fondo sin distorsionar */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    background-color: var(--spiderman-bg); /* Un color de respaldo si la imagen no carga */
+}
+
+/* El resto de los estilos del modo Spiderman siguen igual */
+body.spiderman-mode .container {
+    background: rgba(40, 40, 40, 0.8); /* Ajusta el fondo del contenedor para mayor contraste sobre la imagen */
+    box-shadow: 0 0 15px 5px var(--spiderman-blue), 0 0 30px 10px var(--spiderman-red);
+    border: 2px solid var(--spiderman-web);
+    color: var(--spiderman-web);
+}
+
+body.spiderman-mode h1 {
+    color: var(--spiderman-red);
+    text-shadow: 1px 1px 1px var(--spiderman-blue);
+}
+
+body.spiderman-mode #todo-input,
+body.spiderman-mode #search-input {
+    border: 1px solid var(--spiderman-blue);
+    color: var(--spiderman-web);
+    background: var(--spiderman-bg);
+}
+
+body.spiderman-mode button[type="submit"] {
+    background: var(--spiderman-red);
+    color: var(--spiderman-web);
+}
+
+body.spiderman-mode .todo-item {
+    background: #333;
+    border-left: 5px solid var(--spiderman-blue);
+    /* Aplica la animación de balanceo */
+    animation: webSwing 3s ease-in-out infinite alternate; 
+    border-right: 1px dashed var(--spiderman-web);
+    transition: all 0.2s;
+}
+
+body.spiderman-mode .todo-item:hover {
+    box-shadow: 0 0 10px 1px var(--spiderman-blue);
+    transform: translateY(-2px) scale(1.01);
+}
+
+body.spiderman-mode .todo-item.completed .todo-text {
+    text-decoration-color: var(--spiderman-blue); /* Línea de texto azul */
+    color: var(--spiderman-red); /* Texto rojo atenuado */
+    opacity: 0.8;
+}
+
+body.spiderman-mode .todo-text {
+    color: var(--spiderman-web);
+}
+
+body.spiderman-mode .action-btn.edit { color: var(--spiderman-blue); }
+body.spiderman-mode .action-btn.save { color: var(--success); }
+body.spiderman-mode .action-btn.complete { color: var(--success); }
+body.spiderman-mode .action-btn.delete { color: var(--spiderman-red); }
+
+body.spiderman-mode .action-btn:hover {
+    background: var(--spiderman-blue);
+    color: var(--spiderman-web);
+}
+/* --- Estilos Generales --- */
+.mode-switcher {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.mode-switcher button {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    filter: drop-shadow(0 0 2px var(--accent));
+}
+
+.mode-switcher button:hover {
+    transform: scale(1.2);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: var(--white);
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(34,34,59,0.08);
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.3s;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para el campo de búsqueda (oculto por defecto) */
+#search-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    transition: border 0.2s, opacity 0.3s;
+}
+
+#search-input.hidden {
+    display: none;
+    opacity: 0;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#todo-input:focus, #search-input:focus {
+    border-color: var(--secondary);
+}
+
+button[type="submit"] {
+    background: var(--secondary);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: var(--primary);
+}
+
+#todo-list {
+    list-style: none;
+    width: 100%;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--accent);
+    opacity: 0.7;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    border: none;
+    color: var(--primary);
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.action-btn.edit { color: var(--secondary); }
+.action-btn.save { color: var(--success); }
+.action-btn.complete { color: var(--success); }
+.action-btn.delete { color: var(--danger); }
+
+/* Estilo para botón de eliminar deshabilitado */
+.action-btn.delete.disabled-delete {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(1);
+    pointer-events: none;
+}
+.action-btn.delete.disabled-delete:hover {
+    background: none;
+    color: var(--danger);
+    pointer-events: auto;
+}
+
+
+.action-btn:not(.disabled-delete):hover {
+    background: var(--accent);
+    color: var(--white);
+}
+
+footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+/* --- Estilos para el Modal de Confirmación --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--accent);
+    width: 80%;
+    max-width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-actions button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.modal-actions .delete {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.modal-actions .delete:hover {
+    background: #cc0000;
+}
+
+.modal-actions .action-btn:not(.delete) {
+    background: var(--secondary);
+    color: var(--white);
+}
+
+.modal-actions .action-btn:not(.delete):hover {
+    background: var(--primary);
+}
+
+
+@media (max-width: 500px) {
+    .container {
+        padding: 1rem 0.5rem;
+        max-width: 98vw;
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+}

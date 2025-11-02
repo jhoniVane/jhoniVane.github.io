@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO App</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Mi Lista de Tareas</h1>
+        <div class="mode-switcher">
+          <button id="light-mode" title="Modo claro">🌞</button>
+          <button id="dark-mode" title="Modo oscuro">🌙</button>
+          <button id="neon-mode" title="Modo neón">🚥</button>
+        </div>
+      </header>
+      <main>
+        <form id="todo-form">
+          <input
+            type="text"
+            id="todo-input"
+            placeholder="Agregar nueva tarea..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Agregar</button>
+        </form>
+        <ul id="todo-list"></ul>
+      </main>
+      <footer>
+        <p>&copy; 2025 Mi Aplicación</p>
+      </footer>
+    </div>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
